@@ -40,7 +40,6 @@ int main() {
     //Write file heading
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
-    //world - a list of all hittable objects
     hittable_list world;
     world.add(make_shared<sphere>(point3(0,0,-1), 0.5, make_shared<lambertian>(color(.1, .2, .5))));
     world.add(make_shared<sphere>(point3(0,-100.5,-1), 100, make_shared<lambertian>(color(.8,.8,0.))));
@@ -48,7 +47,7 @@ int main() {
     world.add(make_shared<sphere>(point3(-1,0,-1), 0.5, make_shared<dielectric>(1.5)));
     world.add(make_shared<sphere>(point3(-1,0,-1), -0.45, make_shared<dielectric>(1.5)));
 
-    camera cam;
+    camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), 20, aspect_ratio);
 
     // The image writing loop
     // for each pixel in the image:
